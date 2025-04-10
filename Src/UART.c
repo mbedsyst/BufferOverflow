@@ -57,12 +57,10 @@ uint8_t UART2_RxChar(void)
 	return USART2->DR;
 }
 
-int _write(int file, char *ptr, int len)
+void UART2_RxRaw(char *buffer, uint32_t len)
 {
-    for (int i = 0; i < len; i++)
-    {
-        UART2_TxChar(ptr[i]);
-    }
-    return len;
+	for (uint32_t i = 0; i < len; i++)
+	{
+		buffer[i] = UART2_RxChar();
+	}
 }
-
